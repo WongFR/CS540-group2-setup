@@ -71,7 +71,7 @@ The Team Info page includes:
 
 ## Build Team Page
 
-<img src="assets/images/Build_Team.png" alt="Build Team" width="300">
+<img src="assets/images/Build_Team.png" alt="Build Team" width="400">
 
 ### APIs
 
