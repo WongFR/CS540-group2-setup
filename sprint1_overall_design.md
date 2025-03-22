@@ -15,39 +15,105 @@ This document outlines the overall design, including navigation flow, functional
 ## 🧩 Functional Module Breakdown
 
 ### 🔹 Main Navigation
-- Home Page
-- Game Recommendation
-- Game Search
-- Log out / My Profile
-- Team Search
+
+**Purpose**: Provides core entry points for users to explore games, manage teams, and access their profile.
+
+**Features**:
+- Access the Home Page after login
+- Search and browse game recommendations
+- Navigate to profile or logout
+- View and search existing teams
+
+**Pages**:
+- `/home`
+- `/profile`
+- `/logout`
+- `/team-search`
+- `/game-search`
+
+**Database Relations**:
+- Reads from `User`, `Game`, `Team`
+- Writes to `AuthLog` on logout (optional)
+
+---
 
 ### 🔹 Game Info
-- Game Info
-- Game Picture
-- Game Details
-- Game Review
-- Build Team
+
+**Purpose**: Displays detailed information about a specific game and allows users to initiate team creation.
+
+**Features**:
+- Show game image, description, and reviews
+- Show available teams for this game (optional extension)
+- Link to "Build Team" for team creation
+
+**Pages**:
+- `/game/:gameId`
+
+**Database Relations**:
+- Reads from `Game`
+- May query `Team` to show existing teams related to the game
+
+---
 
 ### 🔹 Build Team
-- Game Name
-- Team Name
-- Team Size
-- Time
-- Teammates
-- Description
+
+**Purpose**: Allows a user to create a new team for a specific game and define its parameters.
+
+**Features**:
+- Select game
+- Define team name, size, description, and scheduled time
+- Add initial teammates (if known)
+
+**Pages**:
+- `/team/build`
+
+**Database Relations**:
+- Writes to `Team`
+- Writes to `TeamMember` (adds creator as first member)
+- Reads from `User` (for teammate search/autocomplete)
+
+---
 
 ### 🔹 Team Info
-- Game Name
-- Team Size
-- Current Team Members
-- Time
-- Description
+
+**Purpose**: Displays team details and member list; allows users to join the team.
+
+**Features**:
+- Show team name, size, game info, and time
+- Show current team members
+- Option to request or join the team
+
+**Pages**:
+- `/team/:teamId`
+
+**Database Relations**:
+- Reads from `Team`
+- Reads from `TeamMember`, `User`
+- Writes to `TeamMember` when joining
+
+---
 
 ### 🔹 User Profile & Settings
-- My Profile
-- Reset Password
-- Personal Info
-- My Team List
+
+**Purpose**: Lets users manage their personal profile, view their teams, and update password or info.
+
+**Features**:
+- View and update personal profile
+- See team participation history
+- Reset password or update avatar/bio
+
+**Pages**:
+- `/profile`
+- `/profile/settings`
+- `/profile/teams`
+
+**Database Relations**:
+- Reads from `User`, `UserProfile`, `TeamMember`, `Team`
+- Writes to `UserProfile` and `User`
+
+---
+
+> Each module is designed with modular, RESTful backend endpoints in mind, and should follow best practices for separation of concerns (e.g., auth, game, team, profile APIs).
 
 ---
 
