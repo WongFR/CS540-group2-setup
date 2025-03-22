@@ -48,7 +48,8 @@ query is the keyword or phrase to search for:
 ```json
 {
   "query": "Game A"
-}```
+}
+```
 
 ### Response Example
 
@@ -72,7 +73,8 @@ For images, Thumbnails are typically lower resolution and smaller in file size. 
       "thumbnailUrl": "https://example.jpg"
     }
   ]
-}```
+}
+```
 
 ## 3. Game Recommendations
 
